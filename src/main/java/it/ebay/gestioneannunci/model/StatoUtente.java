@@ -1,5 +1,6 @@
 package it.ebay.gestioneannunci.model;
 
-public class StatoUtente {
+public enum StatoUtente {
+	CREATO, ATTIVO, DISABILITATO
 
 }
