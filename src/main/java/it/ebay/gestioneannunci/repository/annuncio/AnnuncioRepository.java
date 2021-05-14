@@ -11,6 +11,6 @@ public interface AnnuncioRepository extends CrudRepository<Annuncio, Long>, Cust
 	Annuncio findOneEagerUtente(Long id);
 	
 	@Query("from Annuncio a join fetch a.categorie where a.id = :id")
-	Annuncio findOneEagerCategorie(Long id);
+	Annuncio findOneEagerCategoria(Long id);
 	
 }
