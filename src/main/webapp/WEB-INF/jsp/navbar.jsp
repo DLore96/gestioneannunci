@@ -32,6 +32,9 @@
 	      </li>
 	   </sec:authorize>
     </ul>
+
+      <a class="nav-link" style="color: #ffffff !important;" href="${pageContext.request.contextPath}/login">Login <span class="sr-only">(current)</span></a>
+
     <sec:authorize access="isAuthenticated()">
 	   <ul class="nav navbar-nav navbar-right">
 	     <li><p class="navbar-text">Utente: <sec:authentication property="principal.username" />
