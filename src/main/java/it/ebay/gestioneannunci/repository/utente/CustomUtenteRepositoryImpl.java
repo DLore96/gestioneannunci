@@ -23,7 +23,7 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository {
         Map<String, Object> paramaterMap = new HashMap<String, Object>();
         List<String> whereClauses = new ArrayList<String>();
 
-        StringBuilder queryBuilder = new StringBuilder("select u from Utente u inner join u.ruoli where u.id = u.id ");
+        StringBuilder queryBuilder = new StringBuilder("select u from Utente u left join fetch u.ruoli  where u.id = u.id ");
 
         if (StringUtils.isNotEmpty(example.getUsername())) {
             whereClauses.add(" u.username  like :username ");
@@ -38,13 +38,18 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository {
             paramaterMap.put("cognome", "%" + example.getCognome() + "%");
         }
         if (example.getDateCreated() != null) {
-            whereClauses.add(" u.dateCreated >= dateCreated ");
+            whereClauses.add(" u.dateCreated >= :dateCreated ");
             paramaterMap.put("dateCreated", example.getDateCreated());
         }
-        if (example.getRuoli() != null) {
-            whereClauses.add("u.ruoli in :ruoli ");
-            paramaterMap.put("ruoli", example.getRuoli());
-        }
+        /*if (example.getStato() != null) {
+			whereClauses.add("u.stato = :stato ");
+			paramaterMap.put("stato", example.getStato());
+		}*/
+        if (example.getRuoli() != null && !example.getRuoli().isEmpty()) {
+			whereClauses.add(" u.ruoli in :idList ");
+			paramaterMap.put("idList", example.getRuoli());
+
+		}
 
         queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
         queryBuilder.append(StringUtils.join(whereClauses, " and "));
