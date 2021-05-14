@@ -106,4 +106,12 @@ public class Annuncio {
 		this.categorie = categorie;
 	}
 
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
+	}
+
 }
