@@ -36,6 +36,8 @@ public class Categoria {
 			   inverseJoinColumns = @JoinColumn(name = "annuncio_id", referencedColumnName = "ID"))
 	private List<Annuncio> annunci = new ArrayList<Annuncio>();
 
+	public Categoria() {}
+
 	public Categoria(String descrizione, String codice) {
 		this.descrizione = descrizione;
 		this.codice = codice;
