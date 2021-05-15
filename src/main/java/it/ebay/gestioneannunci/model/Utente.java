@@ -48,7 +48,7 @@ public class Utente {
 
 	@NotNull(message = "{stato.notnull}")
 	@Enumerated(EnumType.STRING)
-	private StatoUtente stato = StatoUtente.CREATO;
+	private StatoUtente stato;
 
 	@ManyToMany
 	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
@@ -72,6 +72,15 @@ public class Utente {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dateCreated = dateCreated;
+	}
+	
+	public Utente(String username, String password, String nome, String cognome, Date dateCreated,StatoUtente stato) {
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dateCreated = dateCreated;
+		this.stato=stato;
 	}
 
 	public Long getId() {

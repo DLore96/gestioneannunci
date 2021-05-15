@@ -94,6 +94,35 @@ public class UtenteController {
 		return "utente/show";
 	}
 	
+	@GetMapping("/edit/{idUtente}")
+	public String editUtente(@PathVariable(required = true) Long idUtente, Model model) {
+		Utente utente=utenteService.caricaSingoloUtente(idUtente);
+		if (utente.getRuoli() != null && !utente.getRuoli().isEmpty())
+			utente=utenteService.caricaUtenteConRuoli(idUtente);
+		model.addAttribute("utente_attribute", utente);
+		model.addAttribute("stati_attr", StatoUtente.values());
+		model.addAttribute("ruoloAttr",ruoloService.listAll());
+		return "utente/edit";
+	}
+	
+	@PostMapping("/saveEdit/")
+	public String executeUpdateCartella(
+			@Valid @ModelAttribute("utente_attribute") Utente utente, BindingResult result,
+			Model model, RedirectAttributes redirectAttrs) {
+
+		System.out.println(utente.getNome()+utente.getCognome()+utente.getPassword()+utente.getUsername()+utente.getId()+utente.getDateCreated()
+		+utente.getStato());
+		if (result.hasErrors()) {
+			model.addAttribute("ruoloAttr", ruoloService.listAll());
+			model.addAttribute("stati_attr", StatoUtente.values());
+			return "utente/edit";
+		}
+		utenteService.aggiorna(utente);
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/utente";
+
+	}
+	
 	
 	
 	

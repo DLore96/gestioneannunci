@@ -79,4 +79,9 @@ public class UtenteServiceImpl implements UtenteService {
 		return repository.findByUsername(username).orElse(null);
 	}
 
+	@Override
+	public Utente caricaUtenteConRuoli(Long id) {
+		return repository.findOneEagerRuoli(id).orElse(null);
+	}
+
 }

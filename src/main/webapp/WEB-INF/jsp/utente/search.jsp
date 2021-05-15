@@ -27,7 +27,7 @@
 		    </div>
 		    <div class='card-body'>
 
-					<form method="post" action="list" >
+					<form method="post" action="${pageContext.request.contextPath }/utente/list" >
 					
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -55,8 +55,8 @@
 						
 						<div class="form-row">	
 							<div class="form-group col-md-6">
-								<label for="stato.id">Stato</label>
-							    <select class="form-control" id="stato.id" name="stato.id">
+								<label for="stato">Stato</label>
+							    <select class="form-control" id="stato" name="stato">
 							    	<option value=""> -- Selezionare una voce -- </option>
 							      	<c:forEach items="${list_stati_attr }" var="statoItem">
 							      		<option value="${statoItem}">${statoItem}</option>
@@ -67,7 +67,7 @@
 							<c:forEach items="${ruoloAttr}" var="itemRuolo">
 								<div class="form-check">
 									<div class=" form-group col-md-6">
-						  				<input type="checkbox" name="ruolo.id" class="form-check-input" type="checkbox" value="${itemRuolo.id}" id="defaultCheck${itemRuolo.id}">
+						  				<input type="checkbox" name="ruoli" class="form-check-input"  value="${itemRuolo.id}" id="defaultCheck${itemRuolo.id}">
 						  				<label class="form-check-label" for="defaultCheck${itemRuolo.id}">${itemRuolo.descrizione}</label>
 						 			 	<br/>
 						 			</div>
@@ -79,7 +79,7 @@
 						<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 					
 
-						<a class="btn btn-outline-primary ml-2" href="aggiungiutente">Add New</a>
+						<a class="btn btn-outline-primary ml-2" href="${pageContext.request.contextPath }/utente/insert">Add New</a>
 						
 					</form>
 		    
