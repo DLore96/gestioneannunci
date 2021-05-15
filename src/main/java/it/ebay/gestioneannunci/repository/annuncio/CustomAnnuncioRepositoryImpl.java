@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,7 +25,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
         List<String> whereClauses = new ArrayList<String>();
 
-        StringBuilder queryBuilder = new StringBuilder("select u from Annuncio a inner join a.utente u inner join fetch a.categorie where a.id = a.id ");
+        StringBuilder queryBuilder = new StringBuilder("select a from Annuncio a left join fetch a.categorie c where a.id = a.id ");
 
         if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
             whereClauses.add(" a.testoAnnuncio like :testoAnnuncio ");
@@ -34,17 +35,9 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
             whereClauses.add(" a.prezzo >= :prezzo ");
             paramaterMap.put("prezzo", example.getPrezzo());
         }
-        if (example.getDataPubblicazione() != null) {
-            whereClauses.add(" a.dataPubblicazione >= :dataPubblicazione ");
-            paramaterMap.put("dataPubblicazione", example.getDataPubblicazione());
-        }
-        if (example.getUtente() != null) {
-            whereClauses.add(" a.utente = :utente ");
-            paramaterMap.put("utente", example.getUtente());
-        }
-        if (example.getCategorie() != null) {
-            whereClauses.add("a.categorie in :categorie ");
-            paramaterMap.put("categorie", example.getCategorie());
+        if (example.getCategorie() != null && !example.getCategorie().isEmpty()) {
+            whereClauses.add("c.id in :idList ");
+            paramaterMap.put("idList", example.getCategorie().stream().map(categoria -> categoria.getId()).collect(Collectors.toList()));
         }
 
         queryBuilder.append(!whereClauses.isEmpty()?" and ":"");

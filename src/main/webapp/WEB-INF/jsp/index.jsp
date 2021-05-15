@@ -31,20 +31,40 @@
 	    <div class="container">
 	      <h1 class="display-3">Benvenuto su EBAY!</h1>
 
-			<%--<form:form method="post" modelAttribute="show_annunci_attribute" action="showAnnunci" novalidate="novalidate">
-				<div class="form-group col-md-12">
+			<form method="post" action="${pageContext.request.contextPath}/annuncio/list" style="padding-top: 3rem;" >
 
-					<label for="contribuenteSearchInput">Contribuente:</label>
-					<spring:bind path="annunci">
-						<input class="form-control ${status.error ? 'is-invalid' : ''}" type="text" id="annunciSearchInput"
-							   name="annunciInput" value="${edit_cartellaesattoriale_attribute.contribuente.nome}${empty edit_cartellaesattoriale_attribute.contribuente.nome?'':' '}${edit_cartellaesattoriale_attribute.contribuente.cognome}">
-					</spring:bind>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label>Titolo Annuncio:</label>
+						<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control" placeholder="Inserire il titolo dell'annuncio" >
+					</div>
 
-					<input type="hidden" name="contribuente" id="contribuenteId" value="${edit_cartellaesattoriale_attribute.contribuente }">
-					<form:has  path="contribuente.nome" cssClass="error_field" />
+					<div class="form-group col-md-6">
+						<label>Prezzo:</label>
+						<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" >
+					</div>
+				</div>
+
+				<div class="form-row">
+
+					<div class="form-check col-md-3">
+						<label>Categoria:</label>
+						<br>
+						<c:forEach items="${list_categoria_attribute}" var="categoriaItem">
+							<input style="margin-left: 0rem;" name="categoria.id" class="form-check-input" type="checkbox" value="${categoriaItem.id}" id="defaultCheck">
+							<label class="form-check-label" for="${categoriaItem.id}" style="margin-left: 1.5em;">
+									${categoriaItem.descrizione}
+							</label>
+							<br/>
+						</c:forEach>
+						<br/>
+					</div>
 
 				</div>
-			</form:form>--%>
+
+				<button type="submit" style="width: 100%; margin-top: 1rem;" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
+
+			</form>
 
 	    </div>
 	  </div>
@@ -57,62 +77,11 @@
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
-	  
-	  
-	    <!-- Example row of columns -->
-	    <div class="row">
-	      <div class="col-md-6">
-	        <h2>Gestione Registi</h2>
-	        <p>Questa funzionalità è realtiva alla Gestione dei Registi</p>
-	        <p><a class="btn btn-primary" href="regista/search" role="button">Vai alla Funzionalità &raquo;</a></p>
-	      </div>
-	      <div class="col-md-6">
-	        <h2>Gestione Film</h2>
-	        <p>Questa funzionalità è realtiva alla Gestione di Film</p>
-	        <p><a class="btn btn-primary" href="film/search" role="button">Vai alla Funzionalità &raquo;</a></p>
-	      </div>
-	    </div>
-	    
-	    <hr>
-	
+
 	  </div> <!-- /container -->
-	
+
+		<jsp:include page="./footer.jsp" />
 	</main>
 
-	<script>
-		$("#annuncioSearchInput").autocomplete({
-			source: function(request, response) {
-				$.ajax({
-					url: "${pageContext.request.contextPath }/contribuente/searchContribuentiAjax",
-					datatype: "json",
-					data: {
-						term: request.term,
-					},
-					success: function(data) {
-						response($.map(data, function(item) {
-							return {
-								label: item.label,
-								value: item.value
-							}
-						}))
-					}
-				})
-			},
-			//quando seleziono la voce nel campo deve valorizzarsi la descrizione
-			focus: function(event, ui) {
-				$("#annuncioSearchInput").val(ui.item.label);
-				return false;
-			},
-			minLength: 2,
-			//quando seleziono la voce nel campo hidden deve valorizzarsi l'id
-			select: function( event, ui ) {
-				$('#annuncioId').val(ui.item.value);
-				//console.log($('#registaId').val())
-				return false;
-			}
-		});
-	</script>
-
-	<jsp:include page="./footer.jsp" />
   </body>
 </html>

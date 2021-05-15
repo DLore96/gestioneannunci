@@ -2,13 +2,12 @@ package it.ebay.gestioneannunci.service.categoria;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.ebay.gestioneannunci.model.Categoria;
 import it.ebay.gestioneannunci.repository.categoria.CategoriaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional

@@ -26,13 +26,13 @@ public class Annuncio {
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "aperto")
-	private boolean aperto = true;
+	@Column(columnDefinition="tinyInt(1) default 1", name = "stato_annuncio")
+	private Boolean aperto;
 	
 	@NotBlank(message = "{testoAnnuncio.notnull}")
 	@Column(name = "testo_annuncio")
 	private String testoAnnuncio;
-	
+
 	@NotNull(message = "{prezzo.notnull}")
 	@Column(name = "prezzo")
 	private Double prezzo;
@@ -49,7 +49,9 @@ public class Annuncio {
 	@ManyToMany(mappedBy = "annunci")
 	private Set<Categoria> categorie = new HashSet<>();
 
-	public Annuncio(boolean aperto, @NotBlank(message = "{testoAnnuncio.notnull}") String testoAnnuncio,
+	public Annuncio() {}
+
+	public Annuncio(Boolean aperto, @NotBlank(message = "{testoAnnuncio.notnull}") String testoAnnuncio,
 			@NotNull(message = "{prezzo.notnull}") Double prezzo,
 			@NotNull(message = "{dataPubblicazione.notnull}") Date dataPubblicazione) {
 		this.aperto = aperto;
@@ -66,11 +68,11 @@ public class Annuncio {
 		this.id = id;
 	}
 
-	public boolean isAperto() {
+	public Boolean isAperto() {
 		return aperto;
 	}
 
-	public void setAperto(boolean aperto) {
+	public void setAperto(Boolean aperto) {
 		this.aperto = aperto;
 	}
 
@@ -112,6 +114,17 @@ public class Annuncio {
 
 	public void setUtente(Utente utente) {
 		this.utente = utente;
+	}
+
+	@Override
+	public String toString() {
+		return "Annuncio{" +
+				"id=" + id +
+				", aperto=" + aperto +
+				", testoAnnuncio='" + testoAnnuncio + '\'' +
+				", prezzo=" + prezzo +
+				", dataPubblicazione=" + dataPubblicazione +
+				'}';
 	}
 
 }
