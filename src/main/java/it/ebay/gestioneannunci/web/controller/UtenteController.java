@@ -1,11 +1,11 @@
 package it.ebay.gestioneannunci.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -33,7 +33,6 @@ public class UtenteController {
 	@Autowired 
 	private RuoloService ruoloService;
 	@Autowired
-	private PasswordEncoder paw;
 
 	@GetMapping
 	public ModelAndView listAllUtenti() {
@@ -60,15 +59,21 @@ public class UtenteController {
 
 	@GetMapping("/insert")
 	public String createUtente(Model model) {
-		model.addAttribute("insert_utente_attr", new Utente());
+		Utente utenteInstance= new Utente();
+		utenteInstance.setStato(StatoUtente.CREATO);
+		utenteInstance.setDateCreated(new Date());
+		model.addAttribute("insert_utente_attr", utenteInstance);
 		return "utente/insert";
 	}
 
 	@PostMapping("/save")
-	public String saveUtente(@Valid @ModelAttribute("insert_utente_attr") Utente utente, BindingResult result,
-			RedirectAttributes redirectAttrs) {
-		System.out.println(utente.getCognome());
+	public String saveUtente(@RequestParam(name = "passwordnuova") String passwordnuova, @Valid @ModelAttribute("insert_utente_attr") Utente utente,
+			BindingResult result,Model model, RedirectAttributes redirectAttrs) {
+		
 		if (result.hasErrors()) {
+			return "utente/insert";
+		}
+		if(!utente.getPassword().equals(passwordnuova)) {
 			return "utente/insert";
 		}
 		utenteService.inserisciNuovo(utente);

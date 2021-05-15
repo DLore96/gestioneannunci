@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import it.ebay.gestioneannunci.model.StatoUtente;
@@ -17,6 +18,8 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Autowired
 	private UtenteRepository repository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public List<Utente> listAllUtenti() {
@@ -35,6 +38,7 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void inserisciNuovo(Utente utenteInstance) {
+		utenteInstance.setPassword(passwordEncoder.encode(utenteInstance.getPassword()));
 		repository.save(utenteInstance);
 	}
 
