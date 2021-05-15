@@ -21,5 +21,7 @@ public interface AnnuncioService {
 	public void rimuovi(Annuncio annuncioInstance);
 	
 	public List<Annuncio> findByExample(Annuncio annuncioInstance);
+
+	public Annuncio caricaSingoloElementoEager(Long id);
 	
 }

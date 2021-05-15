@@ -57,4 +57,9 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		return repository.findByExample(annuncioInstance);
 	}
 
+	@Override
+	public Annuncio caricaSingoloElementoEager(Long id) {
+		return repository.findOneEager(id);
+	}
+
 }

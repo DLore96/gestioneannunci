@@ -68,7 +68,7 @@
                                 <a class="btn  btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter" >
                                     Visualizza Dettagli
                                 </a>
-                                    <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath }/annuncio/acquisto/${annuncioItem.id }">Compra</a>
+                                    <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath }/acquisto/show/${annuncioItem.id }">Compra</a>
                                 </td>
 
                                 <!-- Modal -->
@@ -90,7 +90,6 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                     </div>

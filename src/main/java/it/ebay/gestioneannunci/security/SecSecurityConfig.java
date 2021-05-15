@@ -34,9 +34,9 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll().antMatchers("/login").permitAll()
 			.antMatchers("/utente/**").hasRole("ADMIN")
 			.antMatchers("/areaprivata/**").hasRole("CLASSIC_USER")
-			//.antMatchers("/acquisto/**").hasAnyRole("ADMIN", "CLASSIC_USER")
+//			.antMatchers("/acquisto/**").hasAnyRole("ADMIN", "CLASSIC_USER")
 			.antMatchers("/**").permitAll()
-		// .antMatchers("/anonymous*").anonymous()
+			//.antMatchers("/anonymous*").anonymous()
 			.anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/home")
 			.failureUrl("/login?error=true").permitAll().and().logout().logoutSuccessUrl("/login?logout=true")
 			.invalidateHttpSession(true).permitAll().and().csrf().disable();

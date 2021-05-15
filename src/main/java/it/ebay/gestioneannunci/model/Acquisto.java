@@ -61,9 +61,8 @@ public class Acquisto {
 		this.prezzo = prezzo;
 	}
 
-	public Acquisto(String descrizione, String codice, Date dataAcquisto, Double prezzo, Utente utente) {
+	public Acquisto(String descrizione, Date dataAcquisto, Double prezzo, Utente utente) {
 		this.descrizione = descrizione;
-		this.codice = codice;
 		this.dataAcquisto = dataAcquisto;
 		this.prezzo = prezzo;
 		this.utente = utente;
