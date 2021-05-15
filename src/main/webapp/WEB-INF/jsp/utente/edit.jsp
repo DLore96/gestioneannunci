@@ -74,6 +74,16 @@
 								</spring:bind>
 								<form:errors  path="username" cssClass="error_field" />
 							</div>
+							
+							<div class="form-group col-md-3">
+								<label>Credito residuo <span class="text-danger">*</span></label>
+								<spring:bind path="creditoResiduo">
+									<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="creditoResiduo"
+								   id="creditoResiduo" placeholder="Inserire il credito residuo"
+								   value="${utente_attribute.creditoResiduo }" required>
+								</spring:bind>
+								<form:errors path="creditoResiduo" cssClass="error_field"/>
+					</div>
 						</div>
 						
 						<div class="form-row">
