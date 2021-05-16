@@ -27,6 +27,9 @@ public class AcquistoController {
     @Autowired
     private AcquistoService acquistoService;
 
+    @Autowired
+    private UtenteService utenteService;
+
     @GetMapping("/show/{idAnnuncio}")
     public String showAcquisto(@PathVariable(required = true) Long idAnnuncio, Model model) {
         Annuncio annuncio = annuncioService.caricaSingoloElementoEagerUtente(idAnnuncio);
@@ -35,23 +38,23 @@ public class AcquistoController {
     }
 
     @PostMapping("/compra/{idAnnuncio}")
-    public String compraAnnuncio(@PathVariable(required = true) Long idAnnuncio, RedirectAttributes redirectAttributes) {
+    public String compraAnnuncio(@PathVariable(required = true) Long idAnnuncio, Model model) {
 
         Annuncio annuncio = annuncioService.caricaSingoloElementoEagerUtente(idAnnuncio);
         Acquisto acquisto = new Acquisto(annuncio.getTestoAnnuncio(), new Date(), annuncio.getPrezzo(), annuncio.getUtente());
 
-        /*if (annuncio.getUtente().getCreditoResiduo < annuncio.getPrezzo()) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Il credito non e' sufficiente per completare l'acquisto.");
-            return "acquisto/show";
-        }*/
+        if (annuncio.getUtente().getCreditoResiduo() < annuncio.getPrezzo()) {
+            model.addAttribute("errorMessage", "Il credito non e' sufficiente per completare l'acquisto.");
+            return "annuncio/list";
+        }
 
-        // Sottrarre il credito dell'utente con l'acquisto
-
+        utenteService.sottraiCredito(annuncio.getUtente(), annuncio.getPrezzo());
         annuncio.setAperto(false);
 
         annuncioService.aggiorna(annuncio);
         acquistoService.inserisciNuovo(acquisto);
 
+        model.addAttribute("successMessage", "Acquisto eseguito con successo!");
         return "acquisto/show";
 
     }

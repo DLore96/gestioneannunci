@@ -80,6 +80,14 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
+	public void sottraiCredito(Utente utente, Double costoAnnuncio) {
+		Double creditoResiduo = utente.getCreditoResiduo();
+		creditoResiduo = creditoResiduo - costoAnnuncio;
+		utente.setCreditoResiduo(creditoResiduo);
+		repository.save(utente);
+	}
+
+	@Override
 	public Utente caricaUtenteConRuoli(Long id) {
 		return repository.findOneEagerRuoli(id).orElse(null);
 	}

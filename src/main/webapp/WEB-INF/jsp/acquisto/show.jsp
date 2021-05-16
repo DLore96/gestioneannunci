@@ -15,6 +15,13 @@
 
 <main role="main" class="container">
 
+    <div class="alert alert-success alert-dismissible fade show ${successMessage==null?'d-none': ''}" role="alert">
+        ${successMessage}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     <div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
         ${errorMessage}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -79,7 +86,9 @@
             <a href="${pageContext.request.contextPath }/annuncio" class='btn btn-outline-secondary' style='width:80px'>
                 <i class='fa fa-chevron-left'></i> Back
             </a>
-            <a id="compraAnnuncio_#_${show_annuncio_attribute.id }" class="btn btn-outline-danger btn-sm link-for-modal" data-toggle="modal" data-target="#confirmBuyModal">Compra</a>
+            <a id="compraAnnuncio_#_${show_annuncio_attribute.id }" class="btn btn-outline-primary btn-sm link-for-modal" data-toggle="modal" data-target="#confirmBuyModal">
+                <i class='fa fa-chevron-left'></i> Compra
+            </a>
         </div>
     </div>
 

@@ -45,6 +45,13 @@ public class GestioneannunciApplication implements CommandLineRunner {
 			admin.getRuoli().add(ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
 			utenteServiceInstance.inserisciNuovo(admin);
 		}
+
+		if (utenteServiceInstance.findByUsername("andrea") == null) {
+			Utente admin = new Utente("andrea", passwordEncoder.encode("1111"), "Andrea", "Vecchiato", new Date());
+			admin.setStato(StatoUtente.ATTIVO);
+			admin.getRuoli().add(ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
+			utenteServiceInstance.inserisciNuovo(admin);
+		}
 	}
 
 }

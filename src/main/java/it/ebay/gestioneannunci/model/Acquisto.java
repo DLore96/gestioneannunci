@@ -28,10 +28,6 @@ public class Acquisto {
 	@Column(name = "descrizione")
 	private String descrizione;
 
-	@NotBlank(message = "{codice.notblank}")
-	@Column(name = "codice")
-	private String codice;
-
 	@NotNull(message = "{dataAcquisto.notnull}")
 	@Column(name = "dataAcquisto")
 	private Date dataAcquisto;
@@ -49,14 +45,12 @@ public class Acquisto {
 	public Acquisto() {
 	}
 
-	public Acquisto(String descrizione, String codice) {
+	public Acquisto(String descrizione) {
 		this.descrizione = descrizione;
-		this.codice = codice;
 	}
 
-	public Acquisto(String descrizione, String codice, Date dataAcquisto, Double prezzo) {
+	public Acquisto(String descrizione, Date dataAcquisto, Double prezzo) {
 		this.descrizione = descrizione;
-		this.codice = codice;
 		this.dataAcquisto = dataAcquisto;
 		this.prezzo = prezzo;
 	}
@@ -82,14 +76,6 @@ public class Acquisto {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
-	}
-
-	public String getCodice() {
-		return codice;
-	}
-
-	public void setCodice(String codice) {
-		this.codice = codice;
 	}
 
 	public Date getDataAcquisto() {

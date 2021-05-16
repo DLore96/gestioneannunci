@@ -27,6 +27,7 @@ public interface UtenteService {
 	public void invertUserAbilitation(Long utenteInstanceId);
 	
 	public Utente findByUsername(String username);
-	
+
+	public void sottraiCredito(Utente utente, Double costoAnnuncio);
 	
 }
