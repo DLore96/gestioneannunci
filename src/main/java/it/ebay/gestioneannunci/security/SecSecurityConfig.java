@@ -31,16 +31,23 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// INDENTARE BENE
 
-		http.authorizeRequests().antMatchers("/assets/**")
-			.permitAll().antMatchers("/login").permitAll()
+		http.authorizeRequests().antMatchers("/", "/home").permitAll()
+			 .antMatchers("/assets/**").permitAll()
+			 .antMatchers("/login").permitAll()
 			.antMatchers("/utente/**").hasRole("ADMIN")
 			.antMatchers("/areaprivata/**").hasRole("CLASSIC_USER")
 			.antMatchers("/acquisto/**").hasAnyRole("ADMIN", "CLASSIC_USER")
-			.antMatchers("/**").permitAll()
+			 .antMatchers("/**").permitAll()
+			
+			
 		// .antMatchers("/anonymous*").anonymous()
-			.anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/home")
-			.failureUrl("/login?error=true").permitAll().and().logout().logoutSuccessUrl("/login?logout=true")
-			.invalidateHttpSession(true).permitAll().and().csrf().disable();
+			.anyRequest().authenticated()
+			.and().exceptionHandling().accessDeniedPage("/accessDenied")
+			.and().formLogin().loginPage("/login").defaultSuccessUrl("/home")
+			.failureUrl("/login?error=true").permitAll()
+			.and().logout().logoutSuccessUrl("/login?logout=true")
+			.invalidateHttpSession(true).permitAll()
+			.and().csrf().disable();
 
 	}
 }

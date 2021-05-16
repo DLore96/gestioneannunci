@@ -37,5 +37,11 @@ public class LoginController {
 		}
 		return "redirect:/login?logout=true";
 	}
+	
+	@RequestMapping(value = "/accessDenied", method = { RequestMethod.POST, RequestMethod.GET })
+	public String createUtente(Model model) {
+		model.addAttribute("errorMessage", "Accesso negato.");
+		return "index";
+	}
 
 }
