@@ -44,8 +44,8 @@ public class AcquistoController {
 
         Utente utenteInSessione = utenteService.findByUsername(principal.getName());
 
-        Annuncio annuncio = annuncioService.caricaSingoloElementoEagerUtente(idAnnuncio);
-        Acquisto acquisto = new Acquisto(annuncio.getTestoAnnuncio(), new Date(), annuncio.getPrezzo(), annuncio.getUtente());
+        Annuncio annuncio = annuncioService.caricaSingoloElemento(idAnnuncio);
+        Acquisto acquisto = new Acquisto(annuncio.getTestoAnnuncio(), new Date(), annuncio.getPrezzo(), utenteInSessione);
 
         if (utenteInSessione.getCreditoResiduo() < annuncio.getPrezzo()) {
             model.addAttribute("errorMessage", "Il credito non e' sufficiente per completare l'acquisto.");
@@ -58,8 +58,10 @@ public class AcquistoController {
         annuncioService.aggiorna(annuncio);
         acquistoService.inserisciNuovo(acquisto);
 
+        model.addAttribute("annuncio_list_attribute", utenteInSessione.getAcquisti());
+        model.addAttribute("utente_attribute", utenteInSessione);
         model.addAttribute("successMessage", "Acquisto eseguito con successo!");
-        return "acquisto/show";
+        return "areaprivata/index";
 
     }
 

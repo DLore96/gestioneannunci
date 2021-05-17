@@ -34,6 +34,7 @@ public class AreaPrivataController {
         Utente utenteInSessione = utenteService.findByUsername(principal.getName());
         ModelAndView mv = new ModelAndView();
         mv.addObject("utente_attribute", utenteInSessione);
+        mv.addObject("annuncio_list_attribute", utenteInSessione.getAcquisti());
         mv.setViewName("/areaprivata/index");
         return mv;
     }
