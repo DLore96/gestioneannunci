@@ -61,6 +61,9 @@ public class Utente {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utente")
 	private List<Acquisto> acquisti = new ArrayList<Acquisto>(0);
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utente")
+	private List<Annuncio> annunci = new ArrayList<Annuncio>(0);
 
 	public Utente() {
 	}
@@ -178,6 +181,14 @@ public class Utente {
 
 	public void setAcquisti(List<Acquisto> acquisti) {
 		this.acquisti = acquisti;
+	}
+
+	public List<Annuncio> getAnnunci() {
+		return annunci;
+	}
+
+	public void setAnnunci(List<Annuncio> annunci) {
+		this.annunci = annunci;
 	}
 
 	public boolean isAdmin() {
