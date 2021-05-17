@@ -22,25 +22,20 @@
   <body>
   
 	<jsp:include page="./navbar.jsp" />
-	
-	
-	  
-	  
-  
-  
-	<main role="main" class="container">
-	  
-		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
-		  ${errorMessage}
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
+
+	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
+		${errorMessage}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<main role="main">
 
 	  <!-- Main jumbotron for a primary marketing message or call to action -->
 	  <div class="jumbotron" >
 	    <div class="container">
-	      <h1 class="display-3">Benvenuto su EBAY!</h1>
+	      <h1 class="display-12">Benvenuto su EBAY!</h1>
 
 			<form method="post" action="${pageContext.request.contextPath}/annuncio/list" style="padding-top: 3rem;" >
 

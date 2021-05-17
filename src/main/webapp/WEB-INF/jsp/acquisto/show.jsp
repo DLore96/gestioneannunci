@@ -86,7 +86,7 @@
             <a href="${pageContext.request.contextPath }/annuncio" class='btn btn-outline-secondary' style='width:80px'>
                 <i class='fa fa-chevron-left'></i> Back
             </a>
-            <a id="compraAnnuncio_#_${show_annuncio_attribute.id }" class="btn btn-outline-primary btn-sm link-for-modal" data-toggle="modal" data-target="#confirmBuyModal">
+            <a id="compraAnnuncio_#_${show_annuncio_attribute.id }" class="btn btn-primary link-for-modal" style="color: #ffffff !important;" data-toggle="modal" data-target="#confirmBuyModal">
                 <i class='fa fa-chevron-left'></i> Compra
             </a>
         </div>
