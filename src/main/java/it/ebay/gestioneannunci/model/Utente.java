@@ -31,16 +31,16 @@ public class Utente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@NotBlank(message = "{username.notblank}", groups = RegistrationParam.class)
+	@NotBlank(message = "{username.notblank}", groups = {RegistrationParam.class, EditParam.class, InsertParam.class})
 	@Column(name = "username", unique = true)
 	private String username;
-	@NotBlank(message = "{password.notblank}", groups = RegistrationParam.class)
+	@NotBlank(message = "{password.notblank}", groups = {RegistrationParam.class, InsertParam.class})
 	@Column(name = "password")
 	private String password;
-	@NotBlank(message = "{nome.notblank}", groups = RegistrationParam.class)
+	@NotBlank(message = "{nome.notblank}", groups = {RegistrationParam.class, EditParam.class, InsertParam.class})
 	@Column(name = "nome")
 	private String nome;
-	@NotBlank(message = "{cognome.notblank}", groups = RegistrationParam.class)
+	@NotBlank(message = "{cognome.notblank}", groups = {RegistrationParam.class, EditParam.class, InsertParam.class})
 	@Column(name = "cognome")
 	private String cognome;
 	@NotNull(message = "{dateCreated.notnull}")
