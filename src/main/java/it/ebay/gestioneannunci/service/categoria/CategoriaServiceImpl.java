@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.ebay.gestioneannunci.model.Categoria;
 import it.ebay.gestioneannunci.repository.categoria.CategoriaRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
@@ -44,6 +44,11 @@ public class CategoriaServiceImpl implements CategoriaService {
 	@Override
 	public void rimuovi(Categoria categoriaInstance) {
 		repository.delete(categoriaInstance);
+	}
+
+	@Override
+	public Categoria cercaPerDescrizioneCodice(String descrizione, String codice) {
+		return repository.findByDescrizioneAndCodice(descrizione, codice);
 	}
 
 }

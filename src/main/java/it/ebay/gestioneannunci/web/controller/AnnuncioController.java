@@ -70,9 +70,10 @@ public class AnnuncioController {
     }
     
     @PostMapping("/saveEditAnnuncio/")
-	public String executeUpdateUtente(
+	public String executeUpdateUtente(@RequestParam(name="aperto") Boolean aperto,
 			@Validated({EditAnnuncioParam.class}) @ModelAttribute("annuncio_attribute") Annuncio annuncio, BindingResult result,
 			Model model, RedirectAttributes redirectAttrs) {
+    	System.out.println(aperto);
     	Annuncio annuncioDaAggiornare = annuncioService.caricaSingoloElementoEagerUtente(annuncio.getId());
     	annuncio.setDataPubblicazione(annuncioDaAggiornare.getDataPubblicazione());
     	annuncio.setUtente(annuncioDaAggiornare.getUtente());

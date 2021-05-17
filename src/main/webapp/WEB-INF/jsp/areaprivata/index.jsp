@@ -98,13 +98,13 @@
 		        </tr>
 		    </thead>
 		    	<tbody>
-		        	<c:forEach items="${utente_attribute.getAnnunci() }" var="annuncioItem">
+		        	<c:forEach items="${utente_attribute.getAnnunci() }" var="annuncioItem" varStatus="var">
                     	<tr>
                     		<td>${annuncioItem.testoAnnuncio }</td>
                         	<td>${annuncioItem.prezzo }</td>
                         	<td>${annuncioItem.dataPubblicazione }</td>
 							<td>
-								 <a class="btn  btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter" >
+								 <a class="btn  btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter${var.index}">
                                     Visualizza Dettagli
                                 </a>
                                 <c:if test="${annuncioItem.isAperto() == true }">
@@ -113,12 +113,10 @@
               								  <i class='fa fa-chevron-left'></i>Elimina
             							</a>
 								</c:if>
+	
 							</td>
 						</tr>
-						
-						
-						<!-- Modal Visualizzazione -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal fade" id="exampleModalCenter${var.index}"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     	<div class="modal-dialog modal-dialog-centered" role="document">
         	<div class="modal-content">
             	<div class="modal-header bg-info">
@@ -140,7 +138,8 @@
             	</div>
             </div>
         </div>
-    </div>
+    </div>					
+	
     <!-- MODAL CANCELLAZIONE -->
      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
     	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -169,6 +168,7 @@
 		</table>
 	</div>
 	</div>
+	
 	
     
      

@@ -51,7 +51,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${annuncio_list_attribute }" var="annuncioItem">
+                    <c:forEach items="${annuncio_list_attribute }" var="annuncioItem" varStatus="var">
                         <c:if test="${annuncioItem.isAperto() == true }">
                             <tr>
                                 <td>${annuncioItem.testoAnnuncio }</td>
@@ -59,14 +59,14 @@
                                 <td>${annuncioItem.dataPubblicazione }</td>
                                 <td>
 <%--                                    <a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath }/annuncio/show/${annuncioItem.id }">Dettagli</a>--%>
-                                <a class="btn  btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter" >
+                                <a class="btn  btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter${var.index}" >
                                     Visualizza Dettagli
                                 </a>
                                     <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath }/acquisto/show/${annuncioItem.id }">Compra</a>
                                 </td>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="exampleModalCenter${var.index}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">

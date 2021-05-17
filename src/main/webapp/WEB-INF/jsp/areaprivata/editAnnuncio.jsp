@@ -65,6 +65,19 @@
                         <form:errors  path="prezzo" cssClass="error_field" />
                     </div>
                 </div>
+                <div class="form-row">
+                	<div class="form-group col-md-6">
+                	<label>Stato Annuncio:</label>
+  						<div class="form-check">
+    						<input name="aperto" class="form-check-input" type="radio" id="aperto"${annuncio_attribute.isAperto()==true?"checked":""}>
+    						<label class="form-check-label" for="aperto">Annuncio aperto</label>
+ 						</div>
+  						<div class="form-check">
+    						<input name="aperto" class="form-check-input" type="radio" id="aperto"${annuncio_attribute.isAperto()==false?"checked":""}>
+    						<label class="form-check-label" for="aperto">Annuncio chiuso</label>
+  						</div>
+					</div>
+                </div>
                 
                 <button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
                 <input type="hidden" name="id" id="id" class="form-control ${status.error ? 'is-invalid' : ''}" value="${annuncio_attribute.id }" required>
