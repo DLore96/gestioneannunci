@@ -51,7 +51,7 @@
 						<label>Categoria:</label>
 						<br>
 						<c:forEach items="${list_categoria_attribute}" var="categoriaItem">
-							<input style="margin-left: 0rem;" name="categoria" class="form-check-input" type="checkbox" value="${categoriaItem.id}" id="defaultCheck">
+							<input style="margin-left: 0rem;" name="categorie" class="form-check-input" type="checkbox" value="${categoriaItem.id}" id="defaultCheck">
 							<label class="form-check-label" for="${categoriaItem.id}" style="margin-left: 1.5em;">
 									${categoriaItem.descrizione}
 							</label>

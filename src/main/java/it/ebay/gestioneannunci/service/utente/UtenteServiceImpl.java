@@ -33,6 +33,7 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void aggiorna(Utente utenteInstance) {
+		utenteInstance.setPassword(passwordEncoder.encode(utenteInstance.getPassword()));
 		repository.save(utenteInstance);
 	}
 

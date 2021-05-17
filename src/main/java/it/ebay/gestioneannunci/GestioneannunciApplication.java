@@ -37,21 +37,6 @@ public class GestioneannunciApplication implements CommandLineRunner {
 		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER") == null) {
 			ruoloServiceInstance.inserisciNuovo(new Ruolo("Classic User", "ROLE_CLASSIC_USER"));
 		}
-
-		// CREO DUN ADMIN
-		if (utenteServiceInstance.findByUsername("admin") == null) {
-			Utente admin = new Utente("admin", passwordEncoder.encode("admin"), "Mario", "Rossi", new Date());
-			admin.setStato(StatoUtente.ATTIVO);
-			admin.getRuoli().add(ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
-			utenteServiceInstance.inserisciNuovo(admin);
-		}
-
-		if (utenteServiceInstance.findByUsername("andrea") == null) {
-			Utente admin = new Utente("andrea", passwordEncoder.encode("1111"), "Andrea", "Vecchiato", new Date());
-			admin.setStato(StatoUtente.ATTIVO);
-			admin.getRuoli().add(ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
-			utenteServiceInstance.inserisciNuovo(admin);
-		}
 	}
 
 }
