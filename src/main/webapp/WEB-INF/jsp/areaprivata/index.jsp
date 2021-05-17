@@ -108,7 +108,7 @@
                                     Visualizza Dettagli
                                 </a>
                                 <c:if test="${annuncioItem.isAperto() == true }">
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath }/areaprivate/editAnnuncio/${annuncioItem.id }">Edit</a>
+									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath }/annuncio/editAnnuncio/${annuncioItem.id }">Edit</a>
 									 <a id="eliminaAnnuncio_#_${annuncioItem.id }" class="btn btn-outline-primary btn-sm link-for-modal" data-toggle="modal" data-target="#deleteModal">
               								  <i class='fa fa-chevron-left'></i>Elimina
             							</a>
