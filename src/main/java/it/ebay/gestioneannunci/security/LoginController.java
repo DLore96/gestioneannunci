@@ -23,7 +23,7 @@ public class LoginController {
 			errorMessage = "Username or Password is incorrect !!";
 		}
 		if (logout != null) {
-			errorMessage = "You have been successfully logged out !!";
+			model.addAttribute("successMessage", "Hai effettuato correttamente il logout!");
 		}
 		model.addAttribute("errorMessage", errorMessage);
 		return "login";

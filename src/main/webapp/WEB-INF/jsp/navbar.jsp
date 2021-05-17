@@ -16,10 +16,8 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="${pageContext.request.contextPath}/home">Home</a>
-          <a class="dropdown-item" href="${pageContext.request.contextPath}/regista/search">Ricerca Registi</a>
-          <a class="dropdown-item" href="${pageContext.request.contextPath}/regista/insert">Inserisci Regista</a>
-          <a class="dropdown-item" href="${pageContext.request.contextPath}/film/search">Ricerca Film</a>
-          <a class="dropdown-item" href="${pageContext.request.contextPath}/film/insert">Inserisci Film</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/home">Ricerca Annuncio</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/areaprivata/insert">Inserisci Annuncio</a>
         </div>
       </li>
       <sec:authorize access="hasRole('ADMIN')">
@@ -33,14 +31,12 @@
 	   </sec:authorize>
     </ul>
 
-      <a class="nav-link" style="color: #ffffff !important;" href="${pageContext.request.contextPath}/login">Login <span class="sr-only">(current)</span></a>
-
     <sec:authorize access="isAuthenticated()">
-	   <ul class="nav navbar-nav navbar-right">
-	     <li><p class="navbar-text">Utente: <sec:authentication property="principal.username" />
-	     <a href="${pageContext.request.contextPath}/logout">Logout</a></p> 
-	     </li>
-	   </ul>
+	     <p class="navbar-text">Utente: <sec:authentication property="principal.username" />
+	     <a style="margin-left: 1em;" href="${pageContext.request.contextPath}/logout">Logout</a></p>
    </sec:authorize>
+      <sec:authorize access="!isAuthenticated()">
+          <a class="nav-link" style="color: #ffffff !important;" href="${pageContext.request.contextPath}/login">Login <span class="sr-only">(current)</span></a>
+      </sec:authorize>
   </div>
 </nav>

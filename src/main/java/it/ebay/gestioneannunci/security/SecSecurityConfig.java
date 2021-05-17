@@ -31,7 +31,27 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// INDENTARE BENE
 
-		http.authorizeRequests().antMatchers("/", "/home").permitAll()
+		http.authorizeRequests().antMatchers("/", "/home", "/assets/**")
+				.permitAll().antMatchers("/login").permitAll()
+				.antMatchers("/registration/**").permitAll()
+				.antMatchers("/utente/**").hasRole("ADMIN")
+				.antMatchers("/areaprivata/**").hasAnyRole("CLASSIC_USER", "ADMIN")
+				.antMatchers("/acquisto/**").hasAnyRole("ADMIN", "CLASSIC_USER")
+				.antMatchers("/**").permitAll()
+
+
+				.anyRequest().authenticated()
+				.and().exceptionHandling().accessDeniedPage("/accessDenied")
+				.and().formLogin().loginPage("/login").defaultSuccessUrl("/home")
+				.failureUrl("/login?error=true").permitAll()
+				.and().logout().logoutSuccessUrl("/login?logout=true")
+				.invalidateHttpSession(true).permitAll()
+				.and().csrf().disable();
+
+
+	}
+
+	/*http.authorizeRequests().antMatchers("/", "/home").permitAll()
 				.antMatchers("/assets/**").permitAll()
 				.antMatchers("/**").permitAll()
 				.antMatchers("/login").permitAll()
@@ -42,14 +62,13 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-				// .antMatchers("/anonymous*").anonymous()
+	// .antMatchers("/anonymous*").anonymous()
 				.anyRequest().authenticated()
 				.and().exceptionHandling().accessDeniedPage("/accessDenied")
 				.and().formLogin().loginPage("/login").defaultSuccessUrl("/home")
 				.failureUrl("/login?error=true").permitAll()
 				.and().logout().logoutSuccessUrl("/login?logout=true")
 				.invalidateHttpSession(true).permitAll()
-				.and().csrf().disable();
+				.and().csrf().disable();*/
 
-	}
 }

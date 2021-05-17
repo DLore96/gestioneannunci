@@ -80,6 +80,12 @@
 
 	  </div> <!-- /container -->
 
+		<a href="${pageContext.request.contextPath}/areaprivata">
+			<div class="areautente">
+				AREA UTENTE
+			</div>
+		</a>
+
 		<jsp:include page="./footer.jsp" />
 	</main>
 

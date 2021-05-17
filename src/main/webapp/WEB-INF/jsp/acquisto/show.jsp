@@ -113,7 +113,7 @@
                     <div class="modal-footer">
                         <input type="hidden" name="idAnnuncioAcquisto" id="idAnnuncioAcquisto">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                        <input type="submit" value="Continua"  class="btn btn-primary">
+                        <input type="submit" value="Coferma Acquisto"  class="btn btn-primary">
                     </div>
                 </form>
             </div>
