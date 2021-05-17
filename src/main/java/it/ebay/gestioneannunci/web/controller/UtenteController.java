@@ -111,8 +111,6 @@ public class UtenteController {
 			@Valid @ModelAttribute("utente_attribute") Utente utente, BindingResult result,
 			Model model, RedirectAttributes redirectAttrs) {
 
-		System.out.println(utente.getNome()+utente.getCognome()+utente.getPassword()+utente.getUsername()+utente.getId()+utente.getDateCreated()
-		+utente.getStato());
 		if (result.hasErrors()) {
 			model.addAttribute("ruoloAttr", ruoloService.listAll());
 			model.addAttribute("stati_attr", StatoUtente.values());
