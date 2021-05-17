@@ -104,8 +104,8 @@
 							<c:forEach items="${ruoloAttr}" var="itemRuolo">
 								<div class="form-check">
 									<div class=" form-group col-md-6">
-						  				<input type="checkbox" name="ruoli" class="form-check-input" type="checkbox" value="${itemRuolo.id}" id="defaultCheck1"${utente_attribute.ruoli.contains(ruoloItem)?"checked":""}>
-						  				<label class="form-check-label" for="defaultCheck1">${itemRuolo.descrizione}</label>
+						  				<input type="checkbox" name="ruoli" class="form-check-input" type="checkbox" value="${itemRuolo.id}" id="defaultCheck"${utente_attribute.ruoli.contains(itemRuolo)?"checked":""}>
+						  				<label class="form-check-label" for="defaultCheck">${itemRuolo.descrizione}</label>
 						 			 	<br/>
 						 			</div>
 						 		</div>

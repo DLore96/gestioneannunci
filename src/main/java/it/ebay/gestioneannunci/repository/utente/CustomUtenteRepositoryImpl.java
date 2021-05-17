@@ -24,7 +24,7 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository {
 		List<String> whereClauses = new ArrayList<String>();
 
 		StringBuilder queryBuilder = new StringBuilder(
-				"select u from Utente u left join fetch u.ruoli r where u.id = u.id ");
+				"select DISTINCT u from Utente u left join fetch u.ruoli r where u.id = u.id ");
 
 		if (StringUtils.isNotEmpty(example.getNome())) {
 			whereClauses.add(" u.nome  like :nome ");

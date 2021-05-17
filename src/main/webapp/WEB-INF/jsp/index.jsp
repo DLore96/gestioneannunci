@@ -22,9 +22,20 @@
   <body>
   
 	<jsp:include page="./navbar.jsp" />
+	
+	
+	  
+	  
   
   
-	<main role="main">
+	<main role="main" class="container">
+	  
+		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
+		  ${errorMessage}
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
 
 	  <!-- Main jumbotron for a primary marketing message or call to action -->
 	  <div class="jumbotron" >
@@ -68,17 +79,6 @@
 
 	    </div>
 	  </div>
-	  
-	  <div class="container">
-	  
-	  	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
-		  ${errorMessage}
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
-
-	  </div> <!-- /container -->
 
 		<a href="${pageContext.request.contextPath}/areaprivata">
 			<div class="areautente">

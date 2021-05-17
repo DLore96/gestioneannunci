@@ -70,7 +70,7 @@ public class UtenteServiceImpl implements UtenteService {
 		
 		if(utenteInstance.getStato().equals(StatoUtente.ATTIVO))
 			utenteInstance.setStato(StatoUtente.DISABILITATO);
-		else if(utenteInstance.getStato().equals(StatoUtente.DISABILITATO))
+		else if(utenteInstance.getStato().equals(StatoUtente.DISABILITATO) || utenteInstance.getStato().equals(StatoUtente.CREATO))
 			utenteInstance.setStato(StatoUtente.ATTIVO);
 	}
 

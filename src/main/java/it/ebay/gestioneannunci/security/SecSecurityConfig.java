@@ -33,7 +33,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/", "/home", "/assets/**")
 				.permitAll().antMatchers("/login").permitAll()
-				.antMatchers("/registration/**").permitAll()
+				.antMatchers("/registration/**").not().hasAnyRole("ADMIN","CLASSIC_USER")
 				.antMatchers("/utente/**").hasRole("ADMIN")
 				.antMatchers("/areaprivata/**").hasAnyRole("CLASSIC_USER", "ADMIN")
 				.antMatchers("/acquisto/**").hasAnyRole("ADMIN", "CLASSIC_USER")

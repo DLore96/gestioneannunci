@@ -27,7 +27,7 @@
 		    </div>
 		    <div class='card-body'>
 
-					<form method="post" action="${pageContext.request.contextPath }/utente/list" >
+					<form method="post" action="${pageContext.request.contextPath}/utente/list" >
 					
 						<div class="form-row">
 							<div class="form-group col-md-6">

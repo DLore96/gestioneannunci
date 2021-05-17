@@ -53,6 +53,9 @@ public class UtenteController {
 	@PostMapping("/list")
 	public String listUtenti(Utente utenteExample, ModelMap model) {
 		List<Utente> utenti = utenteService.findByExample(utenteExample);
+		for(Utente app:utenti) {
+			System.out.println(app.getCognome()+app.getNome());
+		}
 		model.addAttribute("utente_list_attribute", utenti);
 		return "utente/list";
 	}
@@ -96,9 +99,7 @@ public class UtenteController {
 	
 	@GetMapping("/edit/{idUtente}")
 	public String editUtente(@PathVariable(required = true) Long idUtente, Model model) {
-		Utente utente=utenteService.caricaSingoloUtente(idUtente);
-		if (utente.getRuoli() != null && !utente.getRuoli().isEmpty())
-			utente=utenteService.caricaUtenteConRuoli(idUtente);
+		Utente utente=utenteService.caricaUtenteConRuoli(idUtente);
 		model.addAttribute("utente_attribute", utente);
 		model.addAttribute("stati_attr", StatoUtente.values());
 		model.addAttribute("ruoloAttr",ruoloService.listAll());
