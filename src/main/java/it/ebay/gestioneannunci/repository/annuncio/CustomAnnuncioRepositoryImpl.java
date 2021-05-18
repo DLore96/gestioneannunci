@@ -36,7 +36,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
         }
         if (example.getCategorie() != null && !example.getCategorie().isEmpty()) {
             whereClauses.add("c.id in :idList ");
-            paramaterMap.put("idList", example.getCategorie());
+            paramaterMap.put("idList", example.getCategorie().stream().map(categoria -> categoria.getId()).collect(Collectors.toList()));
         }
 
         queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
