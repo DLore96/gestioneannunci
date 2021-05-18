@@ -3,13 +3,14 @@ package it.ebay.gestioneannunci.web.controller;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-import it.ebay.gestioneannunci.model.Categoria;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,19 +18,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.ebay.gestioneannunci.model.Annuncio;
+import it.ebay.gestioneannunci.model.Categoria;
 import it.ebay.gestioneannunci.model.EditAnnuncioParam;
 import it.ebay.gestioneannunci.model.Utente;
 import it.ebay.gestioneannunci.service.annuncio.AnnuncioService;
 import it.ebay.gestioneannunci.service.categoria.CategoriaService;
 import it.ebay.gestioneannunci.service.utente.UtenteService;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/annuncio")
@@ -73,17 +71,20 @@ public class AnnuncioController {
     public String editAnnuncio(@PathVariable(required = true) Long idAnnuncio, Model model) {
     	Annuncio annuncio= annuncioService.caricaSingoloElemento(idAnnuncio);
         model.addAttribute("annuncio_attribute", annuncio);
+        model.addAttribute("list_categoria_attribute",categoriaService.listAllElements());
         return "areaprivata/editAnnuncio";
     }
     
     @PostMapping("/saveEditAnnuncio/")
-	public String executeUpdateUtente(@RequestParam(name="aperto") Boolean aperto,
+	public String executeUpdateUtente(@RequestParam(name="aperto") Boolean aperto,@RequestParam(name="categorie") Set<Categoria> categorie, 
 			@Validated({EditAnnuncioParam.class}) @ModelAttribute("annuncio_attribute") Annuncio annuncio, BindingResult result,
 			Model model, RedirectAttributes redirectAttrs) {
-    	System.out.println(aperto);
     	Annuncio annuncioDaAggiornare = annuncioService.caricaSingoloElementoEagerUtente(annuncio.getId());
     	annuncio.setDataPubblicazione(annuncioDaAggiornare.getDataPubblicazione());
     	annuncio.setUtente(annuncioDaAggiornare.getUtente());
+    	for(Categoria cat: annuncio.getCategorie())
+    		System.out.println(cat.getDescrizione());
+    	
 
 		if (result.hasErrors()) {
 			return "areaprivata/editAnnuncio";
