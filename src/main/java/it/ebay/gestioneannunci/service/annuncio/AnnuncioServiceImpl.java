@@ -45,7 +45,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	@Override
 	public void aggiorna(Annuncio annuncioInstance) {
 		
-		repository.save(annuncioInstance);
+		annuncioInstance =repository.save(annuncioInstance);
 		for(Categoria cat: repository.findById(annuncioInstance.getId()).get().getCategorie())
 		System.out.println(cat.getDescrizione());
 		
