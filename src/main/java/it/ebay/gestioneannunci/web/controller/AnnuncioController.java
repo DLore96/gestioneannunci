@@ -1,15 +1,15 @@
 package it.ebay.gestioneannunci.web.controller;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
+import it.ebay.gestioneannunci.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.ebay.gestioneannunci.model.Annuncio;
@@ -17,6 +17,9 @@ import it.ebay.gestioneannunci.model.Utente;
 import it.ebay.gestioneannunci.service.annuncio.AnnuncioService;
 import it.ebay.gestioneannunci.service.categoria.CategoriaService;
 import it.ebay.gestioneannunci.service.utente.UtenteService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/annuncio")
@@ -54,6 +57,43 @@ public class AnnuncioController {
     	model.addAttribute("utente_attribute", utenteInSessione);
     	
     	return "areaprivata/index";
+    }
+
+    @GetMapping("/insert")
+    public String inserisciAnnuncio(Model model, Principal principal) {
+        Utente utenteInSessione = utenteService.findByUsername(principal.getName());
+        Annuncio annuncio = new Annuncio();
+        annuncio.setAperto(true);
+        annuncio.setDataPubblicazione(new Date());
+        annuncio.setUtente(utenteInSessione);
+        annuncio.setCategorie(annuncio.getCategorie());
+        List<Categoria> categorie = categoriaService.listAllElements();
+        model.addAttribute("categoria_attribute", categorie);
+        model.addAttribute("insert_annuncio_attribute", annuncio);
+        return "annuncio/insert";
+    }
+
+    @PostMapping("/save")
+    public String saveAnnuncio(@Valid @ModelAttribute("insert_annuncio_attribute") Annuncio annuncio, BindingResult result, RedirectAttributes redirectAttributes, Principal principal) {
+
+        if (result.hasErrors())
+            return "annuncio/insert";
+
+        annuncio.setDataPubblicazione(new Date());
+
+        annuncioService.inserisciNuovo(annuncio);
+
+        redirectAttributes.addFlashAttribute("successMessage", "Operazione eseguita con successo!");
+
+        return "redirect:/areaprivata";
+
+    }
+
+    @GetMapping("/show/{idAnnuncio}")
+    public String showFilm(@PathVariable(required = true) Long idAnnuncio, Model model) {
+        model.addAttribute("show_annuncio_attr", annuncioService.caricaSingoloElementoEagerUtente(idAnnuncio));
+        model.addAttribute("show_categorie_attr", annuncioService.caricaSingoloElementoEagerCateogria(idAnnuncio));
+        return "annuncio/show";
     }
 
 }

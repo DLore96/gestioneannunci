@@ -1,9 +1,9 @@
 package it.ebay.gestioneannunci.web.controller;
 
-import it.ebay.gestioneannunci.model.RegistrationParam;
-import it.ebay.gestioneannunci.model.StatoUtente;
-import it.ebay.gestioneannunci.model.Utente;
-import it.ebay.gestioneannunci.service.ruolo.RuoloService;
+import it.ebay.gestioneannunci.model.*;
+import it.ebay.gestioneannunci.service.acquisto.AcquistoService;
+import it.ebay.gestioneannunci.service.annuncio.AnnuncioService;
+import it.ebay.gestioneannunci.service.categoria.CategoriaService;
 import it.ebay.gestioneannunci.service.utente.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,13 @@ public class AreaPrivataController {
     private UtenteService utenteService;
 
     @Autowired
-    private RuoloService ruoloService;
+    private CategoriaService categoriaService;
+
+    @Autowired
+    private AnnuncioService annuncioService;
+
+    @Autowired
+    private AcquistoService acquistoService;
 
     @GetMapping
     public ModelAndView listUtente(Principal principal) {
@@ -70,6 +76,19 @@ public class AreaPrivataController {
         redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
         return "redirect:/areaprivata";
 
+    }
+
+    @GetMapping("/show/{idAnnuncio}")
+    public String showAnnuncio(@PathVariable(required = true) Long idAnnuncio, Model model) {
+        model.addAttribute("show_annuncio_attr", annuncioService.caricaSingoloElementoEagerUtente(idAnnuncio));
+        model.addAttribute("show_categorie_attr", annuncioService.caricaSingoloElementoEagerCateogria(idAnnuncio));
+        return "areaprivata/show";
+    }
+
+    @GetMapping("/showAcquisto/{idAnnuncio}")
+    public String showAcquisto(@PathVariable(required = true) Long idAnnuncio, Model model) {
+        model.addAttribute("show_annuncio_attribute", acquistoService.caricaSingoloElementoEager(idAnnuncio));
+        return "areaprivata/showAcquisto";
     }
 
 }

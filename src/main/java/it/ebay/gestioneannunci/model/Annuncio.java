@@ -29,7 +29,7 @@ public class Annuncio {
 	@Column(columnDefinition="tinyInt(1) default 1", name = "stato_annuncio")
 	private Boolean aperto;
 	
-	@NotBlank(message = "{testoAnnuncio.notnull}")
+	@NotBlank(message = "{testoAnnuncio.notblank}")
 	@Column(name = "testo_annuncio")
 	private String testoAnnuncio;
 
@@ -124,6 +124,7 @@ public class Annuncio {
 				", testoAnnuncio='" + testoAnnuncio + '\'' +
 				", prezzo=" + prezzo +
 				", dataPubblicazione=" + dataPubblicazione +
+				", categorie" + categorie +
 				'}';
 	}
 

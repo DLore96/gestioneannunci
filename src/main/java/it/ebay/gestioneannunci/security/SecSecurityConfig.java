@@ -36,6 +36,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/registration/**").not().hasAnyRole("ADMIN","CLASSIC_USER")
 				.antMatchers("/utente/**").hasRole("ADMIN")
 				.antMatchers("/areaprivata/**").hasAnyRole("CLASSIC_USER", "ADMIN")
+				.antMatchers("/annuncio/insert").hasAnyRole("CLASSIC_USER", "ADMIN")
 				.antMatchers("/acquisto/**").hasAnyRole("ADMIN", "CLASSIC_USER")
 				.antMatchers("/**").permitAll()
 
