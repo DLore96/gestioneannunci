@@ -76,7 +76,7 @@ public class AnnuncioController {
     }
     
     @PostMapping("/saveEditAnnuncio/")
-	public String executeUpdateUtente(@RequestParam(name="aperto") Boolean aperto,@RequestParam(name="categorie") Set<Categoria> categorie, 
+	public String executeUpdateUtente(@RequestParam(name="categorie") Set<Categoria> categorie, 
 			@Validated({EditAnnuncioParam.class}) @ModelAttribute("annuncio_attribute") Annuncio annuncio, BindingResult result,
 			Model model, RedirectAttributes redirectAttrs) {
     	Annuncio annuncioDaAggiornare = annuncioService.caricaSingoloElementoEagerUtente(annuncio.getId());

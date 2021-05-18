@@ -66,17 +66,6 @@
                     </div>
                 </div>
                 <div class="form-row">
-                	<div class="form-group col-md-6">
-                	<label>Stato Annuncio:</label>
-  						<div class="form-check">
-    						<input name="aperto" class="form-check-input" type="radio" id="aperto"${annuncio_attribute.isAperto()==true?"checked":""}>
-    						<label class="form-check-label" for="aperto">Annuncio aperto</label>
- 						</div>
-  						<div class="form-check">
-    						<input name="aperto" class="form-check-input" type="radio" id="aperto"${annuncio_attribute.isAperto()==false?"checked":""}>
-    						<label class="form-check-label" for="aperto">Annuncio chiuso</label>
-  						</div>
-					</div>
 					<div class="form-check col-md-3">
 						<label>Categorie:</label>
 						<br>
