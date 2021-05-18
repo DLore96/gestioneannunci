@@ -25,7 +25,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
         List<String> whereClauses = new ArrayList<String>();
 
-        StringBuilder queryBuilder = new StringBuilder("select a from Annuncio a left join fetch a.categorie c where a.id = a.id ");
+        StringBuilder queryBuilder = new StringBuilder("select DISTINCT a from Annuncio a left join fetch a.categorie c where a.id = a.id ");
 
         if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
             whereClauses.add(" a.testoAnnuncio like :testoAnnuncio ");
@@ -37,7 +37,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
         }
         if (example.getCategorie() != null && !example.getCategorie().isEmpty()) {
             whereClauses.add("c.id in :idList ");
-            paramaterMap.put("idList", example.getCategorie().stream().map(categoria -> categoria.getId()).collect(Collectors.toList()));
+            paramaterMap.put("idList", example.getCategorie());
         }
 
         queryBuilder.append(!whereClauses.isEmpty()?" and ":"");

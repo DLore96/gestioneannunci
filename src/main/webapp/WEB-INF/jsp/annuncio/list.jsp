@@ -79,7 +79,10 @@
                                                 <h5 style="padding: .5em;">Prezzo: ${annuncioItem.prezzo} Euro.</h5>
                                                 <h6 style="padding: .5em;">Data dell'annuncio: ${annuncioItem.dataPubblicazione}</h6>
                                                 <h6 style="padding: .5em;">Utente: ${annuncioItem.utente.nome} ${annuncioItem.utente.cognome}</h6>
-                                                <h6 style="padding: .5em;">Categoria: ${annuncioItem.categorie}</h6>
+                                                <h6 style="padding: .5em;">Categorie:</h6>
+                                                <c:forEach items="${annuncioItem.categorie }" var="categorieItem">
+			            							<h6 style="padding: .5em; display: inline-block;">${categorieItem.descrizione};</h6>
+			            						</c:forEach>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

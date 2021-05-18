@@ -101,10 +101,13 @@
                                     Visualizza Dettagli
                                 </a>
                                 <c:if test="${annuncioItem.isAperto() == true }">
-									<a class="btn  btn-sm btn-outline-warning ml-2 mr-2" href="${pageContext.request.contextPath }/annuncio/editAnnuncio/${annuncioItem.id }">Edit</a>
+									<a class="btn  btn-sm btn-outline-warning ml-2 mr-2" href="${pageContext.request.contextPath }/annuncio/editAnnuncio/${annuncioItem.id }" style="color: #ffffff;">Edit</a>
 									 <a id="eliminaAnnuncio_#_${annuncioItem.id }" class="btn btn-outline-danger btn-sm link-for-modal " data-toggle="modal" data-target="#deleteModal">
               								  <i class='fa fa-chevron-left'></i>Elimina
                                      </a>
+								</c:if>
+								<c:if test="${annuncioItem.isAperto() == false }">
+									<p style="color: #ffffff; display:inline-block; margin-left: .8em; margin-bottom: 0;">Chiuso</p>
 								</c:if>
 	
 							</td>
@@ -127,7 +130,10 @@
 			            		<h5 style="padding: .5em;">Prezzo: ${annuncioItem.prezzo}</h5>
 			            		<h6 style="padding: .5em;">Data dell'annuncio: ${annuncioItem.dataPubblicazione}</h6>
 			            		<h6 style="padding: .5em;">Utente: ${annuncioItem.utente.nome} ${annuncioItem.utente.cognome}</h6>
-			            		<h6 style="padding: .5em;">Categoria: ${annuncioItem.categorie}</h6>
+			            		<h6 style="padding: .5em;">Categorie:</h6>
+                                <c:forEach items="${annuncioItem.categorie }" var="categorieItem">
+           							<h6 style="padding: .5em; display: inline-block;">${categorieItem.descrizione};</h6>
+           						</c:forEach>
 			            	</div>
 			            	<div class="modal-footer ">
 			            		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -208,7 +214,7 @@
                             <div class="modal fade" id="exampleModalCenter${varAcquisti.index}"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 						    	<div class="modal-dialog modal-dialog-centered" role="document">
 						        	<div class="modal-content">
-						            	<div class="modal-header bg-info">
+						            	<div class="modal-header" style="background: #fc5185;">
 						                	<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
 						                    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						                        	<span aria-hidden="true">&times;</span>

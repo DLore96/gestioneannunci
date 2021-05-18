@@ -1,5 +1,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!doctype html>
 <html lang="it">
 <head>
@@ -57,7 +58,9 @@
 
             <dl class="row">
                 <dt class="col-sm-3 text-right">Categorie:</dt>
-                <dd class="col-sm-9">${show_annuncio_attribute.categorie}</dd>
+					<c:forEach items="${show_annuncio_attribute.categorie }" var="categorieItem">
+						<p style="padding-left: 15px;">${categorieItem.descrizione}</p>
+					</c:forEach>
             </dl>
 
             <p>
