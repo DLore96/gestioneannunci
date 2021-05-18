@@ -110,29 +110,31 @@
 							</td>
 						</tr>
 
-	<div class="modal fade" id="exampleModalCenter${var.index}"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    	<div class="modal-dialog modal-dialog-centered" role="document">
-        	<div class="modal-content">
-            	<div class="modal-header bg-info">
-                	<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        	<span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-            	
-            	<div class="modal-body">
-           			<h4 style="padding: .5em;">Testo Annuncio: ${annuncioItem.testoAnnuncio}</h4>
-            		<h5 style="padding: .5em;">Prezzo: ${annuncioItem.prezzo}</h5>
-            		<h6 style="padding: .5em;">Data dell'annuncio: ${annuncioItem.dataPubblicazione}</h6>
-            		<h6 style="padding: .5em;">Utente: ${annuncioItem.utente.nome} ${annuncioItem.utente.cognome}</h6>
-            		<h6 style="padding: .5em;">Categoria: ${annuncioItem.categorie}</h6>
-            	</div>
-            	<div class="modal-footer ">
-            		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            	</div>
-            </div>
-        </div>
-    </div>					
+				<!-- MODAL VISUALIZAZIONE  -->
+
+				<div class="modal fade" id="exampleModalCenter${var.index}"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			    	<div class="modal-dialog modal-dialog-centered" role="document">
+			        	<div class="modal-content">
+			            	<div class="modal-header bg-info">
+			                	<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+			                    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                        	<span aria-hidden="true">&times;</span>
+			                        </button>
+			                </div>
+			            	
+			            	<div class="modal-body">
+			           			<h4 style="padding: .5em;">Testo Annuncio: ${annuncioItem.testoAnnuncio}</h4>
+			            		<h5 style="padding: .5em;">Prezzo: ${annuncioItem.prezzo}</h5>
+			            		<h6 style="padding: .5em;">Data dell'annuncio: ${annuncioItem.dataPubblicazione}</h6>
+			            		<h6 style="padding: .5em;">Utente: ${annuncioItem.utente.nome} ${annuncioItem.utente.cognome}</h6>
+			            		<h6 style="padding: .5em;">Categoria: ${annuncioItem.categorie}</h6>
+			            	</div>
+			            	<div class="modal-footer ">
+			            		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			            	</div>
+			            </div>
+			        </div>
+			    </div>					
 	
     <!-- MODAL CANCELLAZIONE -->
      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
@@ -192,15 +194,39 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${annuncio_list_attribute }" var="annuncioItem">
+                        <c:forEach items="${annuncio_list_attribute }" var="annuncioItem" varStatus="varAcquisti">
                             <tr>
                                 <td class="listaAcquisti">${annuncioItem.descrizione }</td>
                                 <td class="listaAcquisti">${annuncioItem.prezzo }</td>
                                 <td class="listaAcquisti">${annuncioItem.dataAcquisto }</td>
                                 <td class="listaAcquisti">
-                                    <a class="btn  btn-sm btn-outline-light ml-2 mr-2" href="${pageContext.request.contextPath }/areaprivata/showAcquisto/${annuncioItem.id}">Visualizza Dettagli</a>
+	                                <a class="btn  btn-sm btn-outline-light" data-toggle="modal" data-target="#exampleModalCenter${varAcquisti.index}">
+	                                    Visualizza Dettagli
+	                                </a>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="exampleModalCenter${varAcquisti.index}"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						    	<div class="modal-dialog modal-dialog-centered" role="document">
+						        	<div class="modal-content">
+						            	<div class="modal-header bg-info">
+						                	<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+						                    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                        	<span aria-hidden="true">&times;</span>
+						                        </button>
+						                </div>
+						            	
+						            	<div class="modal-body">
+						           			<h4 style="padding: .5em;">Descrizione: ${annuncioItem.descrizione}</h4>
+						            		<h5 style="padding: .5em;">Prezzo: ${annuncioItem.prezzo}</h5>
+						            		<h6 style="padding: .5em;">Data di Acquisto: ${annuncioItem.dataAcquisto}</h6>
+						            	</div>
+						            	<div class="modal-footer ">
+						            		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						            	</div>
+						            </div>
+						        </div>
+    						</div>	
+                            
                         </c:forEach>
                         </tbody>
                     </table>
