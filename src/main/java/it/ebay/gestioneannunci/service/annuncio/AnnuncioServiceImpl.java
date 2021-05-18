@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.ebay.gestioneannunci.model.Annuncio;
+import it.ebay.gestioneannunci.model.Categoria;
 import it.ebay.gestioneannunci.repository.annuncio.AnnuncioRepository;
+import it.ebay.gestioneannunci.repository.categoria.CategoriaRepository;
 
 @Service
 @Transactional
@@ -16,6 +18,9 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 	@Autowired
 	private AnnuncioRepository repository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 	
 	@Override
 	public List<Annuncio> listAllElements() {
@@ -44,8 +49,19 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 	@Override
 	public void inserisciNuovo(Annuncio annuncioInstance) {
-		repository.save(annuncioInstance);
-	}
+        repository.save(annuncioInstance);
+
+        if (annuncioInstance.getCategorie() != null) {
+
+            for (Categoria categoriaItem : annuncioInstance.getCategorie()) {
+
+                categoriaItem = categoriaRepository.findById(categoriaItem.getId()).get();
+                categoriaItem.getAnnunci().add(annuncioInstance);
+                categoriaRepository.save(categoriaItem);
+            }
+        }
+
+    }
 
 	@Override
 	public void rimuovi(Annuncio annuncioInstance) {

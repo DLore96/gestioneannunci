@@ -78,17 +78,4 @@ public class AreaPrivataController {
 
     }
 
-    @GetMapping("/show/{idAnnuncio}")
-    public String showAnnuncio(@PathVariable(required = true) Long idAnnuncio, Model model) {
-        model.addAttribute("show_annuncio_attr", annuncioService.caricaSingoloElementoEagerUtente(idAnnuncio));
-        model.addAttribute("show_categorie_attr", annuncioService.caricaSingoloElementoEagerCateogria(idAnnuncio));
-        return "areaprivata/show";
-    }
-
-    @GetMapping("/showAcquisto/{idAnnuncio}")
-    public String showAcquisto(@PathVariable(required = true) Long idAnnuncio, Model model) {
-        model.addAttribute("show_annuncio_attribute", acquistoService.caricaSingoloElementoEager(idAnnuncio));
-        return "areaprivata/showAcquisto";
-    }
-
 }
