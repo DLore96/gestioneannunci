@@ -43,6 +43,7 @@ public class GestioneannunciApplication implements CommandLineRunner {
 		if (categoriaServiceInstance.cercaPerDescrizioneCodice("giardinaggio", "CAT_GAR") == null) {
 			categoriaServiceInstance.inserisciNuovo(new Categoria("giardinaggio","CAT_GAR"));
 		}
+		
 	}
 
 }

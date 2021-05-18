@@ -93,16 +93,16 @@
 		    	<tbody>
 		        	<c:forEach items="${utente_attribute.getAnnunci() }" var="annuncioItem" varStatus="var">
                     	<tr>
-                    		<td>${annuncioItem.testoAnnuncio }</td>
-                        	<td>${annuncioItem.prezzo }</td>
-                        	<td>${annuncioItem.dataPubblicazione }</td>
-							<td>
-								 <a class="btn  btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter${var.index}">
+                    		<td class="listaAnnunci">${annuncioItem.testoAnnuncio }</td>
+                        	<td class="listaAnnunci">${annuncioItem.prezzo }</td>
+                        	<td class="listaAnnunci">${annuncioItem.dataPubblicazione }</td>
+							<td class="listaAnnunci">
+								 <a class="btn  btn-sm btn-outline-light" data-toggle="modal" data-target="#exampleModalCenter${var.index}">
                                     Visualizza Dettagli
                                 </a>
                                 <c:if test="${annuncioItem.isAperto() == true }">
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath }/annuncio/editAnnuncio/${annuncioItem.id }">Edit</a>
-									 <a id="eliminaAnnuncio_#_${annuncioItem.id }" class="btn btn-outline-primary btn-sm link-for-modal" data-toggle="modal" data-target="#deleteModal">
+									<a class="btn  btn-sm btn-outline-warning ml-2 mr-2" href="${pageContext.request.contextPath }/annuncio/editAnnuncio/${annuncioItem.id }">Edit</a>
+									 <a id="eliminaAnnuncio_#_${annuncioItem.id }" class="btn btn-outline-danger btn-sm link-for-modal " data-toggle="modal" data-target="#deleteModal">
               								  <i class='fa fa-chevron-left'></i>Elimina
                                      </a>
 								</c:if>

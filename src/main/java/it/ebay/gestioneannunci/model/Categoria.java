@@ -34,7 +34,7 @@ public class Categoria {
 	@ManyToMany
 	@JoinTable(name = "categoria_annuncio", joinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "ID"),
 			   inverseJoinColumns = @JoinColumn(name = "annuncio_id", referencedColumnName = "ID"))
-	private List<Annuncio> annunci = new ArrayList<Annuncio>();
+	private List<Annuncio> annunci = new ArrayList<>();
 
 	public Categoria() {}
 
