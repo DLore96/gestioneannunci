@@ -18,4 +18,6 @@ public interface CategoriaService {
 
 	public void rimuovi(Categoria categoriaInstance);
 	
+	public Categoria cercaPerDescrizioneCodice(String descrizione, String codice);
+	
 }

@@ -10,4 +10,6 @@ public interface CategoriaRepository extends CrudRepository<Categoria, Long> {
 	@Query("from Categoria c inner join c.annunci where c.id = :id")
 	Categoria findOneEager(Long id);
 	
+	Categoria findByDescrizioneAndCodice(String descrizione, String codice);
+	
 }

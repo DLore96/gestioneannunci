@@ -5,7 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import it.ebay.gestioneannunci.model.Categoria;
 import it.ebay.gestioneannunci.model.Ruolo;
+import it.ebay.gestioneannunci.service.annuncio.AnnuncioService;
+import it.ebay.gestioneannunci.service.categoria.CategoriaService;
 import it.ebay.gestioneannunci.service.ruolo.RuoloService;
 
 @SpringBootApplication
@@ -13,6 +16,10 @@ public class GestioneannunciApplication implements CommandLineRunner {
 
 	@Autowired
 	private RuoloService ruoloServiceInstance;
+	@Autowired
+	private CategoriaService categoriaServiceInstance;
+	@Autowired
+	private AnnuncioService annuncioServiceInstance;
 	
 
 	public static void main(String[] args) {
@@ -27,6 +34,14 @@ public class GestioneannunciApplication implements CommandLineRunner {
 
 		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER") == null) {
 			ruoloServiceInstance.inserisciNuovo(new Ruolo("Classic User", "ROLE_CLASSIC_USER"));
+		}
+		
+		if (categoriaServiceInstance.cercaPerDescrizioneCodice("informatica", "CAT_INFO") == null) {
+			categoriaServiceInstance.inserisciNuovo(new Categoria("informatica","CAT_INFO"));
+		}
+		
+		if (categoriaServiceInstance.cercaPerDescrizioneCodice("giardinaggio", "CAT_GAR") == null) {
+			categoriaServiceInstance.inserisciNuovo(new Categoria("giardinaggio","CAT_GAR"));
 		}
 	}
 

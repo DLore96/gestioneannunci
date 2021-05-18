@@ -58,7 +58,7 @@
 				<div class="form-row">
 
 					<div class="form-check col-md-3">
-						<label>Categoria:</label>
+						<label>Categorie:</label>
 						<br>
 						<c:forEach items="${list_categoria_attribute}" var="categoriaItem">
 							<input style="margin-left: 0rem;" name="categorie" class="form-check-input" type="checkbox" value="${categoriaItem.id}" id="defaultCheck">
