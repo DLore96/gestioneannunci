@@ -33,7 +33,7 @@ public class Acquisto {
 	private Date dataAcquisto;
 
 	@NotNull(message = "{prezzo.notnull}")
-	@Min(1)
+	@Min(0)
 	@Column(name = "prezzo")
 	private Double prezzo;
 

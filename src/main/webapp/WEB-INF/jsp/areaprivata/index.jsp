@@ -97,7 +97,7 @@
                         	<td class="listaAnnunci">${annuncioItem.prezzo }</td>
                         	<td class="listaAnnunci">${annuncioItem.dataPubblicazione }</td>
 							<td class="listaAnnunci">
-								 <a class="btn  btn-sm btn-outline-light" data-toggle="modal" data-target="#exampleModalCenter${var.index}">
+								 <a class="btn  btn-sm btn-outline-light text-dark" data-toggle="modal" data-target="#exampleModalCenter${var.index}">
                                     Visualizza Dettagli
                                 </a>
                                 <c:if test="${annuncioItem.isAperto() == true }">
