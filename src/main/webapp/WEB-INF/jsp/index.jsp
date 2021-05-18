@@ -34,7 +34,7 @@
 
 	  <!-- Main jumbotron for a primary marketing message or call to action -->
 	  <div class="jumbotron" >
-	    <div class="container">
+	    <div class="container" style="height: 80vh;">
 	      <h1 class="display-12" style="display: inline-block;">Benvenuto su EBAY!</h1>
 			<a href="${pageContext.request.contextPath }/annuncio/insert" class='btn btn-success' style='width:10em; float: right;'>
 				<i class='fa fa-chevron-left'></i> Inserisci annuncio
