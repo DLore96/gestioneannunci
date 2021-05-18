@@ -44,7 +44,17 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 	@Override
 	public void aggiorna(Annuncio annuncioInstance) {
-		repository.save(annuncioInstance);
+		categoriaRepository.deleteCategoriaByAnnuncio(annuncioInstance.getId());
+
+        repository.save(annuncioInstance);
+
+        if (annuncioInstance.getCategorie() != null) {
+            for (Categoria categoriaItem : annuncioInstance.getCategorie()) {
+                categoriaItem = categoriaRepository.findById(categoriaItem.getId()).get();
+                categoriaItem.getAnnunci().add(annuncioInstance);
+                categoriaRepository.save(categoriaItem);
+            }
+        }
 	}
 
 	@Override
@@ -77,5 +87,5 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	public Annuncio caricaSingoloElementoEager(Long id) {
 		return repository.findOneEager(id);
 	}
-
+	
 }
